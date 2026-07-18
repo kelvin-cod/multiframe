@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiFrame Workspace | Painel Multi-Contas Premium</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons for clean premium graphics -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="main-header">
+            <div class="logo-area">
+                <div class="logo-icon">
+                    <i data-lucide="layout-grid" class="pulse-icon"></i>
+                </div>
+                <div>
+                    <h1>MultiFrame <span>Workspace</span></h1>
+                    <p class="tagline">Gerencie múltiplos painéis e contas simultaneamente</p>
+                </div>
+            </div>
+            
+            <div class="header-controls">
+                <!-- Layout Controls -->
+                <div class="control-group">
+                    <span class="control-label">Layout:</span>
+                    <div class="layout-buttons">
+                        <button class="layout-btn active" data-layout="grid" title="Grid 2x2">
+                            <i data-lucide="layout-grid"></i>
+                        </button>
+                        <button class="layout-btn" data-layout="columns" title="3 Colunas Verticais">
+                            <i data-lucide="columns-3"></i>
+                        </button>
+                        <button class="layout-btn" data-layout="rows" title="Linhas Horizontais">
+                            <i data-lucide="rows-3"></i>
+                        </button>
+                        <button class="layout-btn" data-layout="focus" title="Foco Principal">
+                            <i data-lucide="layout-template"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Presets -->
+                <div class="control-group">
+                    <span class="control-label">Presets Rápidos:</span>
+                    <select id="preset-selector" class="custom-select">
+                        <option value="">-- Selecione --</option>
+                        <option value="localhost">Local Development (Portas 3000-3003)</option>
+                        <option value="search">Buscadores (Bing, DuckDuckGo, Yahoo, Ask)</option>
+                        <option value="news">Notícias G1, UOL, CNN, BBC</option>
+                        <option value="custom" disabled>Seus Presets Salvos</option>
+                    </select>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="btn-save-all" class="action-btn primary" title="Salvar todas as configurações no navegador">
+                        <i data-lucide="save"></i> Salvar Estado
+                    </button>
+                    <button id="btn-help" class="action-btn secondary" title="Instruções de X-Frame e Cookies">
+                        <i data-lucide="help-circle"></i> Ajuda
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Workspace Area -->
+        <main class="workspace-grid grid-layout" id="workspace-grid">
+            
+            <!-- Frame Container 1 -->
+            <div class="frame-card" id="frame-card-1" data-id="1">
+                <div class="frame-header">
+                    <div class="frame-title-section">
+                        <span class="frame-badge">1</span>
+                        <input type="text" class="frame-name-input" id="name-1" value="Conta 1" placeholder="Nome da Conta / Identificador">
+                    </div>
+                    <div class="frame-url-section">
+                        <i data-lucide="link-2" class="url-icon"></i>
+                        <input type="url" class="frame-url-input" id="url-1" placeholder="https://exemplo.com" value="">
+                    </div>
+                    <div class="frame-header-controls">
+                        <!-- Scale Zoom dropdown -->
+                        <div class="zoom-selector-wrapper" title="Escala do Conteúdo">
+                            <i data-lucide="zoom-in" class="mini-icon"></i>
+                            <select class="zoom-select" id="zoom-select-1">
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="0.9">90%</option>
+                                <option value="1" selected>100%</option>
+                                <option value="1.25">125%</option>
+                                <option value="1.5">150%</option>
+                            </select>
+                        </div>
+                        
+                        <button class="frame-btn btn-locker" id="locker-btn-1" title="Cofre de Login / Senha">
+                            <i data-lucide="lock"></i>
+                        </button>
+                        <button class="frame-btn btn-reload" id="reload-btn-1" title="Recarregar Frame">
+                            <i data-lucide="refresh-cw"></i>
+                        </button>
+                        <button class="frame-btn btn-maximize" id="max-btn-1" title="Maximizar / Zoom de Tela">
+                            <i data-lucide="maximize-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Credentials Locker Drawer -->
+                <div class="credentials-drawer" id="drawer-1">
+                    <div class="drawer-header">
+                        <h4><i data-lucide="key-round"></i> Cofre de Acesso Rápido</h4>
+                        <span class="drawer-subtitle">Salvo localmente de forma privada</span>
+                    </div>
+                    <div class="drawer-inputs">
+                        <div class="input-field">
+                            <label for="username-1">Usuário/E-mail</label>
+                            <div class="input-with-button">
+                                <input type="text" id="username-1" placeholder="usuario1@email.com">
+                                <button class="copy-btn" id="copy-user-1" title="Copiar Usuário"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="password-1">Senha</label>
+                            <div class="input-with-button">
+                                <input type="password" id="password-1" placeholder="Senha da Conta">
+                                <button class="toggle-password-btn" id="toggle-pw-1" title="Mostrar/Ocultar"><i data-lucide="eye-off"></i></button>
+                                <button class="copy-btn" id="copy-pw-1" title="Copiar Senha"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drawer-footer">
+                        <button class="btn-save-credentials" id="save-cred-1">Guardar Credenciais</button>
+                    </div>
+                </div>
+
+                <!-- Webview Frame Wrapper -->
+                <div class="frame-body">
+                    <div class="frame-loader" id="loader-1">
+                        <div class="spinner"></div>
+                        <span>Carregando site...</span>
+                    </div>
+                    <div class="frame-iframe-container" id="iframe-container-1">
+                        <iframe id="iframe-1" name="iframe-1" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frame Container 2 -->
+            <div class="frame-card" id="frame-card-2" data-id="2">
+                <div class="frame-header">
+                    <div class="frame-title-section">
+                        <span class="frame-badge">2</span>
+                        <input type="text" class="frame-name-input" id="name-2" value="Conta 2" placeholder="Nome da Conta / Identificador">
+                    </div>
+                    <div class="frame-url-section">
+                        <i data-lucide="link-2" class="url-icon"></i>
+                        <input type="url" class="frame-url-input" id="url-2" placeholder="https://exemplo.com" value="">
+                    </div>
+                    <div class="frame-header-controls">
+                        <div class="zoom-selector-wrapper" title="Escala do Conteúdo">
+                            <i data-lucide="zoom-in" class="mini-icon"></i>
+                            <select class="zoom-select" id="zoom-select-2">
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="0.9">90%</option>
+                                <option value="1" selected>100%</option>
+                                <option value="1.25">125%</option>
+                                <option value="1.5">150%</option>
+                            </select>
+                        </div>
+                        <button class="frame-btn btn-locker" id="locker-btn-2" title="Cofre de Login / Senha">
+                            <i data-lucide="lock"></i>
+                        </button>
+                        <button class="frame-btn btn-reload" id="reload-btn-2" title="Recarregar Frame">
+                            <i data-lucide="refresh-cw"></i>
+                        </button>
+                        <button class="frame-btn btn-maximize" id="max-btn-2" title="Maximizar / Zoom de Tela">
+                            <i data-lucide="maximize-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="credentials-drawer" id="drawer-2">
+                    <div class="drawer-header">
+                        <h4><i data-lucide="key-round"></i> Cofre de Acesso Rápido</h4>
+                        <span class="drawer-subtitle">Salvo localmente de forma privada</span>
+                    </div>
+                    <div class="drawer-inputs">
+                        <div class="input-field">
+                            <label for="username-2">Usuário/E-mail</label>
+                            <div class="input-with-button">
+                                <input type="text" id="username-2" placeholder="usuario2@email.com">
+                                <button class="copy-btn" id="copy-user-2" title="Copiar Usuário"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="password-2">Senha</label>
+                            <div class="input-with-button">
+                                <input type="password" id="password-2" placeholder="Senha da Conta">
+                                <button class="toggle-password-btn" id="toggle-pw-2" title="Mostrar/Ocultar"><i data-lucide="eye-off"></i></button>
+                                <button class="copy-btn" id="copy-pw-2" title="Copiar Senha"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drawer-footer">
+                        <button class="btn-save-credentials" id="save-cred-2">Guardar Credenciais</button>
+                    </div>
+                </div>
+
+                <div class="frame-body">
+                    <div class="frame-loader" id="loader-2">
+                        <div class="spinner"></div>
+                        <span>Carregando site...</span>
+                    </div>
+                    <div class="frame-iframe-container" id="iframe-container-2">
+                        <iframe id="iframe-2" name="iframe-2" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frame Container 3 -->
+            <div class="frame-card" id="frame-card-3" data-id="3">
+                <div class="frame-header">
+                    <div class="frame-title-section">
+                        <span class="frame-badge">3</span>
+                        <input type="text" class="frame-name-input" id="name-3" value="Conta 3" placeholder="Nome da Conta / Identificador">
+                    </div>
+                    <div class="frame-url-section">
+                        <i data-lucide="link-2" class="url-icon"></i>
+                        <input type="url" class="frame-url-input" id="url-3" placeholder="https://exemplo.com" value="">
+                    </div>
+                    <div class="frame-header-controls">
+                        <div class="zoom-selector-wrapper" title="Escala do Conteúdo">
+                            <i data-lucide="zoom-in" class="mini-icon"></i>
+                            <select class="zoom-select" id="zoom-select-3">
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="0.9">90%</option>
+                                <option value="1" selected>100%</option>
+                                <option value="1.25">125%</option>
+                                <option value="1.5">150%</option>
+                            </select>
+                        </div>
+                        <button class="frame-btn btn-locker" id="locker-btn-3" title="Cofre de Login / Senha">
+                            <i data-lucide="lock"></i>
+                        </button>
+                        <button class="frame-btn btn-reload" id="reload-btn-3" title="Recarregar Frame">
+                            <i data-lucide="refresh-cw"></i>
+                        </button>
+                        <button class="frame-btn btn-maximize" id="max-btn-3" title="Maximizar / Zoom de Tela">
+                            <i data-lucide="maximize-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="credentials-drawer" id="drawer-3">
+                    <div class="drawer-header">
+                        <h4><i data-lucide="key-round"></i> Cofre de Acesso Rápido</h4>
+                        <span class="drawer-subtitle">Salvo localmente de forma privada</span>
+                    </div>
+                    <div class="drawer-inputs">
+                        <div class="input-field">
+                            <label for="username-3">Usuário/E-mail</label>
+                            <div class="input-with-button">
+                                <input type="text" id="username-3" placeholder="usuario3@email.com">
+                                <button class="copy-btn" id="copy-user-3" title="Copiar Usuário"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="password-3">Senha</label>
+                            <div class="input-with-button">
+                                <input type="password" id="password-3" placeholder="Senha da Conta">
+                                <button class="toggle-password-btn" id="toggle-pw-3" title="Mostrar/Ocultar"><i data-lucide="eye-off"></i></button>
+                                <button class="copy-btn" id="copy-pw-3" title="Copiar Senha"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drawer-footer">
+                        <button class="btn-save-credentials" id="save-cred-3">Guardar Credenciais</button>
+                    </div>
+                </div>
+
+                <div class="frame-body">
+                    <div class="frame-loader" id="loader-3">
+                        <div class="spinner"></div>
+                        <span>Carregando site...</span>
+                    </div>
+                    <div class="frame-iframe-container" id="iframe-container-3">
+                        <iframe id="iframe-3" name="iframe-3" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frame Container 4 -->
+            <div class="frame-card" id="frame-card-4" data-id="4">
+                <div class="frame-header">
+                    <div class="frame-title-section">
+                        <span class="frame-badge">4</span>
+                        <input type="text" class="frame-name-input" id="name-4" value="Conta 4" placeholder="Nome da Conta / Identificador">
+                    </div>
+                    <div class="frame-url-section">
+                        <i data-lucide="link-2" class="url-icon"></i>
+                        <input type="url" class="frame-url-input" id="url-4" placeholder="https://exemplo.com" value="">
+                    </div>
+                    <div class="frame-header-controls">
+                        <div class="zoom-selector-wrapper" title="Escala do Conteúdo">
+                            <i data-lucide="zoom-in" class="mini-icon"></i>
+                            <select class="zoom-select" id="zoom-select-4">
+                                <option value="0.5">50%</option>
+                                <option value="0.75">75%</option>
+                                <option value="0.9">90%</option>
+                                <option value="1" selected>100%</option>
+                                <option value="1.25">125%</option>
+                                <option value="1.5">150%</option>
+                            </select>
+                        </div>
+                        <button class="frame-btn btn-locker" id="locker-btn-4" title="Cofre de Login / Senha">
+                            <i data-lucide="lock"></i>
+                        </button>
+                        <button class="frame-btn btn-reload" id="reload-btn-4" title="Recarregar Frame">
+                            <i data-lucide="refresh-cw"></i>
+                        </button>
+                        <button class="frame-btn btn-maximize" id="max-btn-4" title="Maximizar / Zoom de Tela">
+                            <i data-lucide="maximize-2"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="credentials-drawer" id="drawer-4">
+                    <div class="drawer-header">
+                        <h4><i data-lucide="key-round"></i> Cofre de Acesso Rápido</h4>
+                        <span class="drawer-subtitle">Salvo localmente de forma privada</span>
+                    </div>
+                    <div class="drawer-inputs">
+                        <div class="input-field">
+                            <label for="username-4">Usuário/E-mail</label>
+                            <div class="input-with-button">
+                                <input type="text" id="username-4" placeholder="usuario4@email.com">
+                                <button class="copy-btn" id="copy-user-4" title="Copiar Usuário"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="password-4">Senha</label>
+                            <div class="input-with-button">
+                                <input type="password" id="password-4" placeholder="Senha da Conta">
+                                <button class="toggle-password-btn" id="toggle-pw-4" title="Mostrar/Ocultar"><i data-lucide="eye-off"></i></button>
+                                <button class="copy-btn" id="copy-pw-4" title="Copiar Senha"><i data-lucide="copy"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drawer-footer">
+                        <button class="btn-save-credentials" id="save-cred-4">Guardar Credenciais</button>
+                    </div>
+                </div>
+
+                <div class="frame-body">
+                    <div class="frame-loader" id="loader-4">
+                        <div class="spinner"></div>
+                        <span>Carregando site...</span>
+                    </div>
+                    <div class="frame-iframe-container" id="iframe-container-4">
+                        <iframe id="iframe-4" name="iframe-4" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" referrerpolicy="no-referrer"></iframe>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Help & Troubleshooting Modal -->
+    <div class="modal-overlay" id="help-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2><i data-lucide="info" class="accent-color"></i> Guia do MultiFrame Workspace</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>1. 🔒 Segurança de Navegação & Mesma Origem</h3>
+                <p>Navegadores modernos impedem o controle direto de sites externos a partir de outro painel (Same-Origin Policy). Por isso, o <strong>Cofre de Credenciais</strong> permite que você salve e copie seus dados rapidamente com 1 clique para colá-los nas telas de login.</p>
+                <p><strong>Dica:</strong> Se o seu navegador já possui senhas salvas, o preenchimento nativo funcionará automaticamente ao clicar nos campos dentro das grades.</p>
+
+                <h3>2. 🚫 O Site não carrega (Tela Branca ou Cinza)?</h3>
+                <p>Muitos sites (como Google, Facebook, GitHub) bloqueiam o carregamento em iFrames através de cabeçalhos de segurança (<code>X-Frame-Options</code>).</p>
+                <div class="solution-box">
+                    <strong>Como resolver para uso pessoal:</strong>
+                    <ol>
+                        <li>Instale uma extensão no Chrome/Edge que ignore estes bloqueios (ex: pesquise por <strong>"Ignore X-Frame-Options"</strong> ou <strong>"CORS Unblock"</strong> na Chrome Web Store).</li>
+                        <li>Ative a extensão e recarregue esta página. Os sites voltarão a carregar normalmente!</li>
+                    </ol>
+                </div>
+
+                <h3>3. 👥 Como usar Contas Diferentes no mesmo site?</h3>
+                <p>Para manter sessões ativas diferentes nos frames para o mesmo domínio, você pode:</p>
+                <ul>
+                    <li>Usar diferentes subdomínios (ex: <code>conta1.seusite.com</code>, <code>conta2.seusite.com</code>).</li>
+                    <li>Utilizar parâmetros na URL (ex: <code>seusite.com?sessao=1</code>).</li>
+                    <li>Para desenvolvedores, usar portas diferentes da máquina local (ex: <code>localhost:3000</code>, <code>localhost:3001</code>).</li>
+                </ul>
+
+                <h3>4. 🔍 Recursos Premium do Painel</h3>
+                <ul>
+                    <li><strong>Zoom da Grade (Maximizar):</strong> Dê um duplo clique em qualquer painel (ou clique no ícone de expandir) para maximizar o site na tela toda. Repita para retornar.</li>
+                    <li><strong>Escala do Conteúdo (Zoom Interno):</strong> Ajuste a escala do site no menu de porcentagem para ler páginas completas mesmo em telas pequenas.</li>
+                    <li><strong>Persistência Automática:</strong> Suas URLs, nomes e dados do cofre ficam gravados no seu navegador. Você pode reabrir a página quando quiser.</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-ok-btn" class="action-btn primary">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast System -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
