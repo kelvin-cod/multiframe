@@ -1,6 +1,7 @@
 {
   "name": "multiframe-workspace",
   "version": "1.0.0",
+  "type": "module",
   "description": "Premium multi-frame dashboard with credentials vault",
   "scripts": {
     "dev": "vite --port 3000 --open",
